@@ -1,3 +1,6 @@
+import copy
+
+
 class Time:
     '''
 
@@ -28,11 +31,37 @@ def add_time(t1, t2):
     return sum
 
 
+def increment(time, seconds):
+    t = copy.copy(time)
+    time_in_secs = t.hour * 3600 + t.minute * 60 + t.second
+    tadd = time_in_secs + seconds
+    tnew = Time()
+    tnew.second = tadd % 60
+    tnew.hour = tadd // 3600
+    tnew.minute = (tadd - tnew.second) // 60 - tnew.hour * 60
+    return tnew
+
+
+def time_to_int(time):
+    minutes = time.hour * 60 + time.minute
+    seconds = minutes * 60 + time.second
+    return seconds
+
+
+def int_to_time(seconds):
+    time = Time()
+    minutes, time.second = divmod(seconds, 60)
+    time.hour, time.minute = divmod(minutes, 60)
+    return time
+
+
 noon_time = Time()
 noon_time.hour = 12
 noon_time.minute = 0
 noon_time.second = 0
 
+test = increment(noon_time, 1800)
+print_time(test)
 end_time = Time()
 end_time.hour = 13
 end_time.minute = 49
