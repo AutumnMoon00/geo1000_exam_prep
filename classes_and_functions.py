@@ -55,6 +55,16 @@ def int_to_time(seconds):
     return time
 
 
+def add_time(t1, t2):
+    seconds = time_to_int(t1) + time_to_int(t2)
+    return int_to_time(seconds)
+
+
+def increment(t, seconds):
+    tsec = time_to_int()
+    add = tsec + seconds
+    return int_to_time(add)
+
 noon_time = Time()
 noon_time.hour = 12
 noon_time.minute = 0
